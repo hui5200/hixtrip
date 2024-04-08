@@ -1,6 +1,7 @@
 package com.hixtrip.sample.infra.db.dataobject;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -10,20 +11,17 @@ import lombok.experimental.SuperBuilder;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
- * DO示例
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode()
 @TableName(value = "sample", autoResultMap = true)
 @SuperBuilder(toBuilder = true)
-public class SampleDO {
-
+public class OrderMainDO {
     /**
      * 自增ID
      */
+    @TableId
     private Long id;
     /**
      * 订单ID
@@ -40,7 +38,7 @@ public class SampleDO {
     /**
      * 购买金额
      */
-    private BigDecimal totalAmount;
+    private BigDecimal money;
     /**
      * 支付时间
      */

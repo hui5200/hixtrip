@@ -1,6 +1,7 @@
 package com.hixtrip.sample.domain.pay;
 
 import com.hixtrip.sample.domain.pay.model.CommandPay;
+import com.hixtrip.sample.domain.pay.strategy.PaymentCallbackContext;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,6 +11,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class PayDomainService {
 
+    private PaymentCallbackContext paymentCallbackContext;
+
+    public PayDomainService() {
+        // 初始化上下文类
+        paymentCallbackContext = new PaymentCallbackContext();
+    }
+
 
     /**
      * 记录支付回调结果
@@ -17,5 +25,6 @@ public class PayDomainService {
      */
     public void payRecord(CommandPay commandPay) {
         //无需实现，直接调用即可
+        paymentCallbackContext.executeStrategy(commandPay);
     }
 }
